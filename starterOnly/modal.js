@@ -63,11 +63,14 @@ const validationError = document.getElementById("validationErrorMsg")
 
 // Reservation complete
 const reservation = document.getElementById("reservation")
+const btnClose = document.getElementById("btn-close")
 
 
 // Regex 
-const numbers = new RegExp(/^[0-9]{2}$/);
-const letters = new RegExp(/^[a-zA-ZÀ-ÿ_-]{2,50}$/);
+const numbersRegEx = new RegExp(/^[0-9]{1,2}$/);
+const lettersRegEx = new RegExp(/^[a-zA-ZÀ-ÿ_-]{2,50}$/);
+const emailRegEx = new RegExp(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/);
+const birthRegEx = new RegExp(/^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$/)
 
 
 form.addEventListener('submit', (e) => {
@@ -88,36 +91,38 @@ function validate(){
   let isCheckbox;
 
 
-  if(!letters.test(firstName.value) || firstName.value == "" || firstName.value == null ||  firstName.value.length <2) {
+  if(!lettersRegEx.test(firstName.value) || firstName.value == null) {
     firstError.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
   } else {
     isFirst = true
     firstError.innerText = ""
   }
 
-  if(!letters.test(firstName.value) || lastName.value == "" || lastName.value == null ||  lastName.value.length <2) {
+  if(!lettersRegEx.test(firstName.value) || lastName.value == null) {
     lastError.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom."
   } else {
     isLast = true
     lastError.innerText = ""
   }
 
-  if(email.value == "" || email.value == null) {
+  if(!emailRegEx.test(email.value) || email.value == null) {
     emailError.innerText = "Veuillez entrer une adresse mail valide."
   } else {
     isEmail = true
     emailError.innerText = ""
   }
 
-  if(birthDate.value == null) {
+  if(!birthRegEx.test(birthDate.value) || birthDate.value == null) {
     birthError.innerText = "Vous devez entrer votre date de naissance."
   } else {
     isBirth = true
     birthError.innerText = ""
   }
 
-  if(!numbers.test(quantity.value) || quantity.value == "" || quantity.value == null) {
-    quantityError.innerText = "Vous devez saisir un nombre"
+  console.log(birthDate.value)
+
+  if(!numbersRegEx.test(quantity.value) || quantity.value == null) {
+    quantityError.innerText = "Vous devez saisir un nombre entre 0 et 99"
   } else {
     isQuantity = true
     quantityError.innerText = ""
@@ -140,14 +145,12 @@ function validate(){
 
   // check that all values are correct
 
-  if((isFirst && isLast && isEmail && isQuantity && isRadio && isCheckbox) == true) {
+  if((isFirst && isLast && isEmail && isBirth && isQuantity && isRadio && isCheckbox) == true) {
     form.style.display = "none"
     reservation.style.display = "flex"  
-    
-    console.log("ok")
-  } else {
-    console.log("error")
-  }
-
+  } 
 }
 
+
+// Close button
+btnClose.addEventListener("click", closeModal)
