@@ -91,28 +91,28 @@ function validate(){
   let isCheckbox;
 
 
-  if(!lettersRegEx.test(firstName.value) || firstName.value == null) {
+  if(firstName.value == null || !firstName.value.match(lettersRegEx)) {
     firstError.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
   } else {
     isFirst = true
     firstError.innerText = ""
   }
 
-  if(!lettersRegEx.test(firstName.value) || lastName.value == null) {
+  if(lastName.value == null || !lettersRegEx.test(lastName.value)) {
     lastError.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom."
   } else {
     isLast = true
     lastError.innerText = ""
   }
 
-  if(!emailRegEx.test(email.value) || email.value == null) {
+  if(email.value == null || !emailRegEx.test(email.value)) {
     emailError.innerText = "Veuillez entrer une adresse mail valide."
   } else {
     isEmail = true
     emailError.innerText = ""
   }
 
-  if(!birthRegEx.test(birthDate.value) || birthDate.value == null) {
+  if(birthDate.value == null || !birthRegEx.test(birthDate.value)) {
     birthError.innerText = "Vous devez entrer votre date de naissance."
   } else {
     isBirth = true
@@ -121,7 +121,7 @@ function validate(){
 
   console.log(birthDate.value)
 
-  if(!numbersRegEx.test(quantity.value) || quantity.value == null) {
+  if(quantity.value == null || !numbersRegEx.test(quantity.value)) {
     quantityError.innerText = "Vous devez saisir un nombre entre 0 et 99"
   } else {
     isQuantity = true
@@ -145,12 +145,12 @@ function validate(){
 
   // check that all values are correct
 
-  if((isFirst && isLast && isEmail && isBirth && isQuantity && isRadio && isCheckbox) == true) {
+  if(isFirst && isLast && isEmail && isBirth && isQuantity && isRadio && isCheckbox) {
     form.style.display = "none"
     reservation.style.display = "flex"  
+    form.reset()
   } 
 }
-
 
 // Close button
 btnClose.addEventListener("click", closeModal)

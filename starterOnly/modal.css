@@ -597,11 +597,21 @@ footer {
 
 @media screen and (min-width: 550px) {
   .hero-headline {
-    font-size: 60px;
+    font-size: 60px !important;
   }
   
   .hero-text {
-    font-size: 20px;
+    font-size: 25px;
     width: 495px !important;
   }
+  
+  .btn-signup {
+    margin-top: 140px;
+  }
 } 
+
+@media screen and (min-width: 860px) {
+  .hero-headline {
+    font-size: 90px !important;
+  }
+}
