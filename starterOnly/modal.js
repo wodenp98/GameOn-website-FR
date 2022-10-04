@@ -1,5 +1,5 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
+  const x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -93,38 +93,46 @@ function validate(){
 
   if(firstName.value == null || !firstName.value.match(lettersRegEx)) {
     firstError.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
+    firstName.style.border = 'solid red 2px'
   } else {
     isFirst = true
+    firstName.style.border = 'solid green 2px'
     firstError.innerText = ""
   }
 
   if(lastName.value == null || !lettersRegEx.test(lastName.value)) {
     lastError.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom."
+    lastName.style.border = 'solid red 2px'
   } else {
     isLast = true
+    lastName.style.border = 'solid green 2px'
     lastError.innerText = ""
   }
 
   if(email.value == null || !emailRegEx.test(email.value)) {
     emailError.innerText = "Veuillez entrer une adresse mail valide."
+    email.style.border = 'solid red 2px'
   } else {
     isEmail = true
+    email.style.border = 'solid green 2px'
     emailError.innerText = ""
   }
 
   if(birthDate.value == null || !birthRegEx.test(birthDate.value)) {
     birthError.innerText = "Vous devez entrer votre date de naissance."
+    birthDate.style.border = 'solid red 2px'
   } else {
     isBirth = true
+    birthDate.style.border = 'solid green 2px'
     birthError.innerText = ""
   }
 
-  console.log(birthDate.value)
-
   if(quantity.value == null || !numbersRegEx.test(quantity.value)) {
     quantityError.innerText = "Vous devez saisir un nombre entre 0 et 99"
+    quantity.style.border = 'solid red 2px'
   } else {
     isQuantity = true
+    quantity.style.border = 'solid green 2px'
     quantityError.innerText = ""
   }
   
